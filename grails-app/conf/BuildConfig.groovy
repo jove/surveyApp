@@ -43,8 +43,6 @@ grails.project.dependency.resolution = {
 
         test ":spock:0.7"
 
-        //compile ':cloud-foundry:1.2.3'
-
         build ":tomcat:$grailsVersion"
     }
 }
