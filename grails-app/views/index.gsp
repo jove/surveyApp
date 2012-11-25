@@ -3,7 +3,7 @@
 <html>
   <head>
         <title>Welcome page</title>
-        <meta name="layout" content="main"/>
+        <meta name="layout" content="bootstrap"/>
         <style media="screen" type="text/css">
             .errorPane {
                 padding-top: 10px;

@@ -3,7 +3,7 @@
 <html>
   <head>
       <title>Survey questions list</title>
-      <meta name="layout" content="main"/>
+      <meta name="layout" content="bootstrap"/>
       <style media="screen" type="text/css">
           * {
               padding-left: 2px;

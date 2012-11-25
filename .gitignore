@@ -2,3 +2,5 @@ stacktrace.log
 spy.log
 target
 *.log
+
+.DS_Store
