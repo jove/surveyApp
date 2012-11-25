@@ -3,55 +3,14 @@
 <html>
   <head>
       <title>Survey questions list</title>
-      <meta name="layout" content="bootstrap"/>
+      <meta name="layout" content="main"/>
       <style media="screen" type="text/css">
-          * {
-              padding-left: 2px;
-          }
           span {
-
               display: block;
               clear: both;
           }
-          .headerMsg {
-              font-family: serif;
-              font-size: large;
-              font-style: oblique;
-              font-weight: bold;
-          }
-          .headerMsg1 {
-              font-family: serif;
-              font-size: medium;
-              font-weight: bold;
-              padding-bottom: 20px;
-          }
-          .questionText {
-              font-family: sans-serif;
-              font-weight: bold;
-              font-size: 14px;
-          }
-          .questionAnswer {
-              font-family: sans-serif;
-              font-size: 12px;
-          }
           .answerList {
-              padding-left: 10px;
-          }
-          .customTextArea {
-              width: 250px;
-              height: 80px;
-              margin-left: 10px;
-          }
-          .customButton {
-              cursor: pointer;
-              background: transparent url(<g:resource dir="images/skin" file="database_save.png"/>) 2px 50% no-repeat;
-              font-size: 10px;
-              font-weight: bold;
-              overflow: visible;
-              margin-left: 3px;
-              margin-top: 10px;
-              padding-left: 28px;
-              height: 25px;
+              padding-left: 20px;
           }
           dl dt{
               margin-bottom: 10px;
@@ -64,37 +23,33 @@
       </style>
   </head>
   <body>
-        <span class="headerMsg">Your are taking a survey: ${survey?.name}</span>
+        <span class="lead">Your are taking a survey: ${survey?.name}</span>
         <p><br/>
-        <span class="headerMsg1">Please take your valuable time to answer all of the following questions</span>
+        <span>Please take your valuable time to answer all of the following questions</span>
         </p>
         <g:if test="${flash.message}">
             <p class="errorMsg">${flash.message}</p>
         </g:if>
         <g:form action="saveUserOpinion">
-            <dl>
                 <g:hiddenField name="surveyId" value="${survey?.id}"/>
                 <g:each in="${survey?.questions}" var="question" status="num">
-                    <dt>
-                        <span class="questionText">${num + 1}. ${question?.text}</span>
+                        <span style="margin-top:10px">${num + 1}. ${question?.text}</span>
                         <g:if test="${question?.options}">
                             <g:set var="optionList" value="${question.options}"/>
                             <div class="answerList">
                                 <g:radioGroup name="answer_${question?.id}"
                                               values="${optionList}"
                                               labels="${optionList}">
-                                    <span class="questionAnswer">${it?.radio} ${it?.label}</span>
+                                    <span class="radio">${it?.radio} ${it?.label}</span>
                                 </g:radioGroup>
                             </div>
                         </g:if>
                         <g:else>
-                            <g:textArea name="answer_${question.id}" cols="2" rows="2" class="customTextArea"/>
+                            <g:textArea name="answer_${question.id}" rows="4"/>
                         </g:else>
-                    </dt>
-                </g:each>
-            </dl>
-            <div>
-                <g:actionSubmit value="Save User Opinion" class="customButton"/>
+                </g:each>     
+            <div style="margin-top:10px">
+                <g:actionSubmit value="Save User Opinion" class="btn btn-primary"/>
             </div>
         </g:form>
   </body>
