@@ -23,7 +23,7 @@
       </style>
   </head>
   <body>
-        <span class="lead">Your are taking a survey: ${survey?.name}</span>
+        <span class="lead">${grailsApplication.config.survey_renderSurvey_lead} ${survey?.name}</span>
         <p><br/>
         <span>Please take your valuable time to answer all of the following questions</span>
         </p>
@@ -49,7 +49,7 @@
                         </g:else>
                 </g:each>     
             <div style="margin-top:10px">
-                <g:actionSubmit value="Save User Opinion" class="btn btn-primary"/>
+                <input type="submit" value="Submit your feedback" class="btn btn-primary">
             </div>
         </g:form>
   </body>

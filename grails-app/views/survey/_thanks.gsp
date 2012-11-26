@@ -4,13 +4,13 @@
   <head>
       <title>Thank you page</title>
       <meta name="layout" content="main"/>
-      <meta http-equiv="REFRESH" content="10;URL=http://google.com"/>
+      <meta http-equiv="REFRESH" content="10;URL=${grailsApplication.config.survey_redirect_url}"/>
       <g:javascript library="jquery" />
   </head>
   <body>
       <div>
               Thank you for your time and valuable opinions.
-              We are about to move you from this site to the google search page within <span id="second">10</span> second(s)
+              ${grailsApplication.config.survey_redirect_text} within <span id="second">10</span> second(s)
       </div>
       <g:javascript>
         var intervalId = setInterval("countdown()",1000)
