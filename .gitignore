@@ -2,5 +2,5 @@ stacktrace.log
 spy.log
 target
 *.log
-
+.gradle
 .DS_Store
