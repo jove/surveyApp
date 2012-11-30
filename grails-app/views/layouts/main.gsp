@@ -38,7 +38,7 @@
                         <span class="icon-bar"></span>
                     </a>
                     
-                    <a class="brand" href="${createLink(uri: '/')}">${meta(name: 'app.name')}</a>
+                    <a class="brand" href="${createLink(uri: '/')}">${grailsApplication.config.survey_brand}</a>
 
                     <div class="nav-collapse">
                         <ul class="nav">      
