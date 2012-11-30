@@ -25,7 +25,7 @@
   <body>
         <span class="lead">${grailsApplication.config.survey_renderSurvey_lead} ${survey?.name}</span>
         <p><br/>
-        <span>Please take your valuable time to answer all of the following questions</span>
+        <span>${grailsApplication.config.survey_renderSurvey_note}</span>
         </p>
         <g:if test="${flash.message}">
             <p class="errorMsg">${flash.message}</p>
