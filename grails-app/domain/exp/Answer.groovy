@@ -6,7 +6,7 @@ class Answer {
     String text
 
     static constraints = {
-        text blank: true
+        text blank: true, maxSize: 2000
         question()
     }
 

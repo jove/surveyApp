@@ -65,8 +65,7 @@ class SurveyController {
             new Answer(question: question, text: v)
         }
         def uo = new UserOpinion(submitDate: new Date(), answers: answers, survey: survey)
-        def result = uo.save()
-        if(result) {
+        if(!uo.hasErrors()&&uo.save()){
              redirect(action: 'thanks', params: [opinionId: uo.id])
         }else{
              flash.message = 'Please provide answers for all questions'
@@ -103,5 +102,25 @@ class SurveyController {
             result << [(qid as Integer): params."${prefix}${qid}"]
         }
         result
+    }
+    
+    //overwrite the scaffold actions
+    
+    def list() {
+        params.max = Math.min(params.max ? params.int('max') : 10, 100)
+        def allSurvey=Survey.list(params)
+        def inputCounts=allSurvey.collect{UserOpinion.countBySurvey(it)}
+        [surveyInstanceList: allSurvey, surveyInstanceTotal: Survey.count(), inputCounts:inputCounts]
+    }
+    
+    def show() {
+        def surveyInstance = Survey.get(params.id)
+        if (!surveyInstance) {
+			flash.message = message(code: 'default.not.found.message', args: [message(code: 'survey.label', default: 'Survey'), params.id])
+            redirect(action: "list")
+            return
+        }
+
+        [surveyInstance: surveyInstance, opinions: UserOpinion.findAllBySurvey(surveyInstance)]
     }
 }
