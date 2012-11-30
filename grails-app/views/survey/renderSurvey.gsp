@@ -39,13 +39,19 @@
                             <div class="answerList">
                                 <g:radioGroup name="answer_${question?.id}"
                                               values="${optionList}"
+                                              value="${question?.defaultValue}"
                                               labels="${optionList}">
                                     <span class="radio">${it?.radio} ${it?.label}</span>
                                 </g:radioGroup>
                             </div>
                         </g:if>
                         <g:else>
-                            <g:textArea name="answer_${question.id}" rows="4"/>
+                            <g:if test="${'short'==question?.type}">
+                                <g:textField name="answer_${question.id}" rows="4" value="${question?.defaultValue}" />
+                            </g:if>
+                            <g:else>
+                                <g:textArea name="answer_${question.id}" rows="4" value="${question?.defaultValue}"/>
+                            </g:else>
                         </g:else>
                 </g:each>     
             <div style="margin-top:10px">
