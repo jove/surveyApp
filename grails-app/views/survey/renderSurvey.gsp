@@ -24,7 +24,7 @@
   </head>
   <body>
         <span class="lead">${grailsApplication.config.survey_renderSurvey_lead} ${survey?.name}</span>
-        <p><br/>
+        <p>
         <span>${grailsApplication.config.survey_renderSurvey_note}</span>
         </p>
         <g:if test="${flash.message}">
@@ -32,6 +32,7 @@
         </g:if>
         <g:form action="saveUserOpinion">
                 <g:hiddenField name="surveyId" value="${survey?.id}"/>
+                <hr>
                 <g:each in="${survey?.questions}" var="question" status="num">
                         <span style="margin-top:10px">${num + 1}. ${question?.text}</span>
                         <g:if test="${question?.options}">
