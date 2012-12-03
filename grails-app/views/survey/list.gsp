@@ -44,6 +44,7 @@
             <thead>
             <tr>
                 <g:sortableColumn property="name" title="${message(code: 'survey.name.label', default: 'Name')}" />
+                <g:sortableColumn property="shortname" title="${message(code: 'survey.shortname.label', default: 'Short Name')}" />
                 <th class="sortable">Input count</th>
                 <th></th>
             </tr>
@@ -52,6 +53,7 @@
             <g:each in="${surveyInstanceList}" var="surveyInstance" status="i">
                 <tr>
                     <td><g:link action="show" id="${surveyInstance.id}">${surveyInstance.name.size()>32?surveyInstance.name.substring(0,32)+'...':surveyInstance.name}</g:link></td>
+                    <td><g:link action="for" id="${surveyInstance.shortname}">${surveyInstance.shortname}</g:link></td>
                     <td>${inputCounts[i]}</td>
                     <td class="link">
                         <g:link action="show" id="${surveyInstance.id}" class="btn btn-small">Show &raquo;</g:link>

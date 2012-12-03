@@ -57,6 +57,16 @@ class SurveyController {
         }
     }
 
+    def "for"(){
+        def survey = Survey.findByShortname(params.id)
+        if(!survey){
+            flash.message = "A survey whose id is ${params.id} is not found, please make sure you choose an available survey"
+            redirect(uri: '/')
+        }else{
+            render(view: 'renderSurvey', model: [survey: survey])
+        }        
+    }
+
     def saveUserOpinion = {
         def answerMap = extractFromParams(params)
         def survey = Survey.get(params.surveyId)

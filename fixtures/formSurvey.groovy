@@ -5,6 +5,7 @@ def rates=['Strong','Normal+','Normal','Normal-','Weak','No opinion']
 def aspects=['Tech Skill','Initiative','Result Driven','Teamwork','Communication','Influence','Leadership','Work Hard','Work Smart']
 
 def targets=['Member A','Member B','Member C']
+def targetsId=['a.foo','b.foo','c.foo']
 def genders=['M','F','M']
 def questionArray=[]	
 fixture{
@@ -28,6 +29,7 @@ fixture{
     	"survey${idx}"(Survey) {
     		name="360-degree survey for $p."
     		questions=questionArray
+    		shortname=targetsId[idx]
     	}
     }
 }

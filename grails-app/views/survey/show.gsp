@@ -48,6 +48,13 @@
 
    					</g:if>
 
+                  <g:if test="${surveyInstance?.shortname}">
+                     <dt><g:message code="survey.shortname.label" default="Short Name" /></dt>
+
+                        <dd><g:fieldValue bean="${surveyInstance}" field="shortname"/></dd>
+
+                  </g:if>
+
                    <g:if test="${surveyInstance?.questions}">
                				<li class="fieldcontain">
                					<span id="questions-label" class="property-label"><g:message code="survey.questions.label" default="Questions" /></span>

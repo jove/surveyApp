@@ -3,7 +3,7 @@ package exp
 class GuardFilters {
 
     def filters = {
-        surveyRelated(controller: 'survey', action: 'renderSurvey|saveUserOpinion|thanks') {
+        surveyRelated(controller: 'survey', action: 'for|renderSurvey|saveUserOpinion|thanks') {
             before = {
                 if((!params.id && !params.surveyId) && !params.opinionId){
                     log.warn "User requested for action: survey/${actionName} in an inappropriate way"
