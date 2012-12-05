@@ -14,9 +14,12 @@ class UserOpinion {
     static constraints = {
         submitDate()
         survey()
+        /*
+        disable this, as not all answers are required
         answers(validator: {value, obj ->
             value?.size() == obj?.survey?.questions?.size()
         })
+        */
     }
 
     static mapping = {

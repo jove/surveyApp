@@ -75,12 +75,17 @@ class SurveyController {
             new Answer(question: question, text: v)
         }
         def uo = new UserOpinion(submitDate: new Date(), answers: answers, survey: survey)
-        if(!uo.hasErrors()&&uo.save()){
-             redirect(action: 'thanks', params: [opinionId: uo.id])
-        }else{
-             flash.message = 'Please provide answers for all questions'
-             render(view: 'renderSurvey', model: [survey: survey])
+        try{
+            if(!uo.hasErrors()&&uo.save()){
+                redirect(action: 'thanks', params: [opinionId: uo.id])
+                return
+            }
+        }catch(Exception e){
+            e.printStackTrace()
         }
+        
+        flash.message = 'Please provide answers for all questions'
+        render(view: 'renderSurvey', model: [survey: survey])
     }
 
     def thanks = {
@@ -119,7 +124,16 @@ class SurveyController {
     def list() {
         params.max = Math.min(params.max ? params.int('max') : 10, 100)
         def allSurvey=Survey.list(params)
-        def inputCounts=allSurvey.collect{UserOpinion.countBySurvey(it)}
+        def inputCounts=allSurvey.collect{
+            def userOpinions=UserOpinion.findAllBySurvey(it)
+            def count=0
+            userOpinions.each{userOpinion->
+                if(userOpinion?.answers?.size()==userOpinion?.survey?.questions?.size()){
+                    count++
+                }
+            }
+            return count
+        }
         [surveyInstanceList: allSurvey, surveyInstanceTotal: Survey.count(), inputCounts:inputCounts]
     }
     
