@@ -48,10 +48,10 @@
                         </g:if>
                         <g:else>
                             <g:if test="${'short'==question?.type}">
-                                <g:textField name="answer_${question.id}" rows="4" value="${question?.defaultValue}" />
+                                <g:textField name="answer_${question.id}" required="required" placeholder="${question?.defaultValue}"/>
                             </g:if>
                             <g:else>
-                                <g:textArea name="answer_${question.id}" rows="4" value="${question?.defaultValue}"/>
+                                <g:textArea name="answer_${question.id}" rows="4" style="width:400px" maxlength="1500" required="required" placeholder="${question?.defaultValue}"/>
                             </g:else>
                         </g:else>
                 </g:each>     
