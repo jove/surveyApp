@@ -10,7 +10,7 @@ class Survey {
 
     static constraints = {
         name blank: false, unique: true
-        questions minSize: 5
+        questions minSize: 1
         shortname nullable: true, unique: true
     }
     static mapping = {
