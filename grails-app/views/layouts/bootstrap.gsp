@@ -58,7 +58,7 @@
 			<hr>
 
 			<footer>
-				<p>&copy; Company 2011</p>
+				<p>${grailsApplication.config.survey_footer_msg}</p>
 			</footer>
 		</div>
 
