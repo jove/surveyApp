@@ -61,9 +61,15 @@
    							<span class="property-value" aria-labelledby="questions-label"> ${num + 1}.
    							<g:link controller="question" action="show" id="${q.id}">${q?.text.encodeAsHTML()}</g:link>
    							</span>
+                        <g:set var="sameAnswerMap" value="[:]" />
    							<g:each in="${opinions}" var="userOpinion">
    								<g:each in="${userOpinion.answers}" var="a">
    									<g:if test="${a.question==q}">
+                                 <%
+                                 if(!sameAnswerMap[a.text])
+                                    sameAnswerMap[a.text]=0
+                                 sameAnswerMap[a.text]++
+                                 %>
    										<br/><span class="property-value">${a.text}</span> 
                                  <g:if test="${num==0}">
                                     <g:link controller="userOpinion" action="show" id="${userOpinion.id}">...</g:link> 
@@ -72,7 +78,10 @@
    									</g:if>
    								</g:each>
    							</g:each>
-   							<br>
+                        <br>
+                        <blockquote>
+                           <p>Subtotal: ${sameAnswerMap}</p>
+                        </blockquote>
       					</g:each>
                	</g:if>
 
