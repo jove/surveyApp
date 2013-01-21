@@ -54,7 +54,9 @@
             <g:if test="${userOpinionInstance?.answers}">
                 <dt><g:message code="userOpinion.answers.label" default="Answers" /></dt>
                 <g:each in="${userOpinionInstance.answers}" var="a">
-                    <div class="property-value" aria-labelledby="answers-label">${a?.question.text}<br/>${a?.text}<br/><br/></div>
+                    <div class="property-value" aria-labelledby="answers-label">
+                        <strong>${a?.question.text}</strong><br/>
+                        ${a?.text}<br/><br/></div>
                 </g:each>
 
             </g:if>

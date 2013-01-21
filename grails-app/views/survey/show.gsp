@@ -56,25 +56,25 @@
                   </g:if>
 
                    <g:if test="${surveyInstance?.questions}">
-               				<li class="fieldcontain">
-               					<span id="questions-label" class="property-label"><g:message code="survey.questions.label" default="Questions" /></span>
-
-               						<g:each in="${surveyInstance.questions}" var="q">
-               							<span class="property-value" aria-labelledby="questions-label">
-               							<g:link controller="question" action="show" id="${q.id}">${q?.text.encodeAsHTML()}</g:link>
-               							</span>
-               							<g:each in="${opinions}" var="userOpinion">
-               								<g:each in="${userOpinion.answers}" var="a">
-               									<g:if test="${a.question==q}">
-               										<span class="property-value">${a.text}</span>
-               									</g:if>
-               								</g:each>
-               							</g:each>
-               							<br>
-               						</g:each>
-
-               				</li>
-               		</g:if>
+                     <br/><dt>Questions & Answers</dt>         				
+   						<g:each in="${surveyInstance.questions}" var="q" status="num">
+   							<span class="property-value" aria-labelledby="questions-label"> ${num + 1}.
+   							<g:link controller="question" action="show" id="${q.id}">${q?.text.encodeAsHTML()}</g:link>
+   							</span>
+   							<g:each in="${opinions}" var="userOpinion">
+   								<g:each in="${userOpinion.answers}" var="a">
+   									<g:if test="${a.question==q}">
+   										<br/><span class="property-value">${a.text}</span> 
+                                 <g:if test="${num==0}">
+                                    <g:link controller="userOpinion" action="show" id="${userOpinion.id}">...</g:link> 
+                                 </g:if>
+                                 <br/>
+   									</g:if>
+   								</g:each>
+   							</g:each>
+   							<br>
+      					</g:each>
+               	</g:if>
 
    				</dl>
 
