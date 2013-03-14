@@ -12,8 +12,9 @@
 
                <g:form class="form-horizontal" action="createByDsl" >
                   <g:textArea name="dsl" style="width:80%;height:500px"/>
-                  <br/>
-                  <g:submitButton name="Create Survey"/>
+                  <div style="margin:12px">
+                     <g:submitButton name="Create Survey" class="btn btn-primary"/>
+                  </div>
                </g:form>
 
 
