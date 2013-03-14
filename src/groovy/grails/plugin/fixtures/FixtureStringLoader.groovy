@@ -1,21 +1,21 @@
 package grails.plugin.fixtures
 
-import org.springframework.context.ApplicationContext
 import grails.plugin.fixtures.files.FixtureFileLoader
-import grails.plugin.fixtures.files.shell.FixtureBuildingShell
 import grails.plugin.fixtures.exception.FixtureException
+import grails.plugin.fixtures.builder.FixtureBuilder
+import org.springframework.context.ApplicationContext
 
 class FixtureStringLoader extends FixtureFileLoader{
 
 	FixtureStringLoader(fixture){
-		this.fixture = fixture
-		this.shell = new FixtureBuildingShell(this)
+		super(fixture,[],new FixtureBuilder(fixture))
 	}
 
 	ApplicationContext loadDsl(String dsl) {
 		loading = true
 		doLoadDsl(dsl)
 		loading = false		
+		builder.createApplicationContext()
 	}
 
 	protected doLoadDsl(String dsl) {
