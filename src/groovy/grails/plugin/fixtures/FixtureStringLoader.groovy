@@ -3,6 +3,7 @@ package grails.plugin.fixtures
 import org.springframework.context.ApplicationContext
 import grails.plugin.fixtures.files.FixtureFileLoader
 import grails.plugin.fixtures.files.shell.FixtureBuildingShell
+import grails.plugin.fixtures.exception.FixtureException
 
 class FixtureStringLoader extends FixtureFileLoader{
 
@@ -21,7 +22,7 @@ class FixtureStringLoader extends FixtureFileLoader{
 		try {
 			shell.evaluate(dsl)
 		} catch (Throwable e) {
-			throw new FixtureException("Failed to evaluate ${fixtureName} (pattern: '$locationPattern')", e)
+			throw new FixtureException("Failed to evaluate the DSL ${dsl}", e)
 		}
 	}
 
