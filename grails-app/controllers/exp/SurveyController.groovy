@@ -29,19 +29,20 @@ class SurveyController {
     	redirect(uri:"/")	
     }
 
-    def loadDsl = {
-        def dsl='''
-import exp.*
+    def dsl = {
+        if(!session.admin){
+            flash.message="Please login first."
+            redirect(uri:"/")
+        }
+    }
 
-fixture {
-    q1(Question,text:'What is your gender?',options:['Male', 'Female'],defaultValue:'Male')
-    q2(Question,text:'What is your name?',type:'short', defaultValue:'anonymous')
-    q3(Question,text:'What is your comment?',options:[], defaultValue:'N/A')
-    survey1(Survey,name:'A Very Simple Survey',questions:[q1,q2,q3])
-}        
-        '''
-        new FixtureStringLoader(fixtureLoader.createFixture()).loadDsl(dsl)
-        redirect(uri:"/")    
+    def createByDsl = {
+        if(params.dsl&&session.admin){
+            new FixtureStringLoader(fixtureLoader.createFixture()).loadDsl(params.dsl)
+            redirect(action:'list')
+            return
+        }
+        redirect(uri:"/")   
     }
 
     def index = {
